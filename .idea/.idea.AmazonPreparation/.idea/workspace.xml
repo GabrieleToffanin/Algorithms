@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a66bdf0-fa0d-462f-bde5-0f053d454545" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Algorithms.Tests/DijkstraPathFindingTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Algorithms.sln" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Algorithms/Algorithms.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Algorithms/Graphs/DijkstraPathFinding.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Algorithms/Structures/MinHeap.cs" afterDir="false" />
-    </list>
+    <list default="true" id="7a66bdf0-fa0d-462f-bde5-0f053d454545" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,12 +15,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Algorithms/Graphs/DijkstraPathFinding.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Algorithms/Structures/MinHeap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c3faa091489261299a8b80fe7ebc8748dc845333ea3af4817cc6458baf826/PriorityQueue.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -58,16 +53,28 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1754147202502</updated>
-      <workItem from="1754147203724" duration="4212000" />
+      <workItem from="1754147203724" duration="5219000" />
     </task>
+    <task id="LOCAL-00001" summary="Add Dijkstra's algorithm implementation and related tests">
+      <option name="closed" value="true" />
+      <created>1754152443754</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1754152443754</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Add Dijkstra's algorithm implementation and related tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Dijkstra's algorithm implementation and related tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -84,19 +91,6 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Algorithms/Graphs/DijkstraPathFinding.cs</url>
-          <line>18</line>
-          <properties documentPath="$PROJECT_DIR$/Algorithms/Graphs/DijkstraPathFinding.cs" containingFunctionPresentation="Method 'FindPath'">
-            <startOffsets>
-              <option value="681" />
-            </startOffsets>
-            <endOffsets>
-              <option value="705" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
