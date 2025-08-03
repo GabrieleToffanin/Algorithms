@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using AmazonPreparation.Graphs;
 
 /// <summary>
 /// Consider an undirected graph consisting of  nodes where each node is labeled from  to  and the edge between any two nodes
@@ -66,44 +67,10 @@ public class Program {
         var result = new List<int>();
         
         foreach(var key in graph.Keys.Where(k => k != src).OrderBy(k => k)){
-            result.Add(SolvePath(graph, src, key));
+            result.Add(BfsPathFinding.SolvePath(graph, src, key));
         }
         
         return result;
-    }
-    
-    private static int SolvePath(Dictionary<int, List<int>> graph, int src, int dest){
-        if (src == dest) return 0;
-        if (!graph.ContainsKey(src)) return -1;
-        
-        var queue = new Queue<int>();
-        var visited = new HashSet<int>();
-        var distances = new Dictionary<int,int>();
-        
-        queue.Enqueue(src);
-        visited.Add(src);
-        distances[src] = 0;
-        
-        while(queue.Count > 0){
-            var current_node = queue.Dequeue();
-            var current_distance = distances[current_node];
-            
-            if (graph.ContainsKey(current_node)){
-                foreach(var neighbour in graph[current_node])
-                {
-                    if (neighbour == dest)
-                        return current_distance + 6;
-                    
-                    if (!visited.Contains(neighbour)){
-                        visited.Add(neighbour);
-                        distances[neighbour] = current_distance + 6;
-                        queue.Enqueue(neighbour);
-                    }
-                }
-            }
-        }
-        
-        return -1;
     }
     
     private static int GetQueryToken(string token)
