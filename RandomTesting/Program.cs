@@ -1,78 +1,126 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using AmazonPreparation.Graphs;
+﻿// using System;
+// using System.Collections.Generic;
+// using System.IO;
+// using System.Linq;
+// using AmazonPreparation.Graphs;
+//
+// /// <summary>
+// /// Consider an undirected graph consisting of  nodes where each node is labeled from  to  and the edge between any two nodes
+// /// is always of length . We define node  to be the starting position for a BFS.
+// /// Given a graph, determine the distances from the start node to each of its descendants and return the list
+// /// in node number order, ascending. If a node is disconnected, it's distance should be .
+// /// For example, there are  nodes in the graph with a starting node . The list of , and each has a weight of .
+// /// </summary>
+// public class Program {
+//     
+//     public static void Main(string[] args) {
+//         /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution */
+//         
+//         var result = Solve();
+//         
+//         foreach(var list in result){
+//             foreach(var item in list){
+//                 Console.Out.Write(item);
+//                 Console.Out.Write(' ');
+//             }
+//             Console.Out.WriteLine();
+//         }
+//     }
+//     
+//     private static List<List<int>> Solve(){
+//         var src = Console.In.ReadLine();
+//         List<List<int>> result = new();
+//         
+//         while(Console.In.Peek() is not -1){
+//             var countAndArcs = Console.In.ReadLine().Split(' ');
+//             var totalNodes = int.Parse(countAndArcs[0]);
+//             var totalArcs = int.Parse(countAndArcs[1]);
+//             
+//             Dictionary<int, List<int>> graph = new();
+//             
+//             for (int i = 0; i < totalNodes; i++)
+//             {
+//                 graph[i + 1] = new List<int>();
+//             }
+//             
+//             for (int i = 0; i < totalArcs; i++){
+//                 string[] currentLine = Console.In.ReadLine().Split(' ');
+//
+//                 var target = int.Parse(currentLine[1]);
+//                 var startingPos = int.Parse(currentLine[0]);
+//                 
+//                 graph[startingPos].Add(target);
+//                 graph[target].Add(startingPos);
+//                 
+//             }
+//
+//             src = Console.In.ReadLine();
+//             var startingNode = GetQueryToken(src);
+//             
+//             result.Add(SolveFor(startingNode, graph));
+//         }
+//         
+//         return result;
+//     }
+//     
+//     private static List<int> SolveFor(int src, Dictionary<int, List<int>> graph){
+//         var result = new List<int>();
+//         
+//         foreach(var key in graph.Keys.Where(k => k != src).OrderBy(k => k)){
+//             result.Add(BfsPathFinding.SolvePath(graph, src, key));
+//         }
+//         
+//         return result;
+//     }
+//     
+//     private static int GetQueryToken(string token)
+//     => int.Parse(token);
+// }
 
-/// <summary>
-/// Consider an undirected graph consisting of  nodes where each node is labeled from  to  and the edge between any two nodes
-/// is always of length . We define node  to be the starting position for a BFS.
-/// Given a graph, determine the distances from the start node to each of its descendants and return the list
-/// in node number order, ascending. If a node is disconnected, it's distance should be .
-/// For example, there are  nodes in the graph with a starting node . The list of , and each has a weight of .
-/// </summary>
-public class Program {
-    
-    public static void Main(string[] args) {
-        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution */
-        
-        var result = Solve();
-        
-        foreach(var list in result){
-            foreach(var item in list){
-                Console.Out.Write(item);
-                Console.Out.Write(' ');
-            }
-            Console.Out.WriteLine();
-        }
-    }
-    
-    private static List<List<int>> Solve(){
-        var src = Console.In.ReadLine();
-        List<List<int>> result = new();
-        
-        while(Console.In.Peek() is not -1){
-            var countAndArcs = Console.In.ReadLine().Split(' ');
-            var totalNodes = int.Parse(countAndArcs[0]);
-            var totalArcs = int.Parse(countAndArcs[1]);
-            
-            Dictionary<int, List<int>> graph = new();
-            
-            for (int i = 0; i < totalNodes; i++)
-            {
-                graph[i + 1] = new List<int>();
-            }
-            
-            for (int i = 0; i < totalArcs; i++){
-                string[] currentLine = Console.In.ReadLine().Split(' ');
+var totalNodes = int.Parse(Console.In.ReadLine());
+List<int> values = Console.In.ReadLine().Split(' ').Select(i => int.Parse(i)).ToList();
 
-                var target = int.Parse(currentLine[1]);
-                var startingPos = int.Parse(currentLine[0]);
-                
-                graph[startingPos].Add(target);
-                graph[target].Add(startingPos);
-                
-            }
+var binaryTreeRoot = CreateBinaryTree(totalNodes, values);
+var height = getHeight(binaryTreeRoot);
 
-            src = Console.In.ReadLine();
-            var startingNode = GetQueryToken(src);
+Console.Out.WriteLine(height);
+
+static int getHeight(Node root){
+    // Write your code here
+    if (root is null)
+        return 0;
+        
+    var leftHeight = getHeight(root.Left);
+    var rightHeigh = getHeight(root.Right);
+        
+    return 1 + Math.Max(leftHeight, rightHeigh);
+}
+    
+static Node CreateBinaryTree(int totalNodes, List<int> values){
+    Node root = null;
+    foreach(var item in values)
+        root = InsertNode(root, item);
+    return root;
+}
+    
+static Node InsertNode(Node root, int value){
+    if (root == null)
+        return new Node(value);
             
-            result.Add(SolveFor(startingNode, graph));
-        }
-        
-        return result;
-    }
+    if (root.Value > value)
+        root.Left = InsertNode(root.Left, value);
+    else
+        root.Right = InsertNode(root.Right, value);
+            
+    return root;
+}
     
-    private static List<int> SolveFor(int src, Dictionary<int, List<int>> graph){
-        var result = new List<int>();
+class Node{
+    public int Value {get; set;}
+    public Node Left {get; set;}
+    public Node Right {get; set;}
         
-        foreach(var key in graph.Keys.Where(k => k != src).OrderBy(k => k)){
-            result.Add(BfsPathFinding.SolvePath(graph, src, key));
-        }
-        
-        return result;
+    public Node(int value){
+        this.Value = value;
     }
-    
-    private static int GetQueryToken(string token)
-    => int.Parse(token);
 }
