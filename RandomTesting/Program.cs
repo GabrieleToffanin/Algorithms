@@ -77,50 +77,109 @@
 //     => int.Parse(token);
 // }
 
-var totalNodes = int.Parse(Console.In.ReadLine());
-List<int> values = Console.In.ReadLine().Split(' ').Select(i => int.Parse(i)).ToList();
+// var totalNodes = int.Parse(Console.In.ReadLine());
+// List<int> values = Console.In.ReadLine().Split(' ').Select(i => int.Parse(i)).ToList();
+//
+// var binaryTreeRoot = CreateBinaryTree(totalNodes, values);
+// var height = getHeight(binaryTreeRoot);
+//
+// Console.Out.WriteLine(height);
+//
+// static int getHeight(Node root){
+//     // Write your code here
+//     if (root is null)
+//         return 0;
+//         
+//     var leftHeight = getHeight(root.Left);
+//     var rightHeigh = getHeight(root.Right);
+//         
+//     return 1 + Math.Max(leftHeight, rightHeigh);
+// }
+//     
+// static Node CreateBinaryTree(int totalNodes, List<int> values){
+//     Node root = null;
+//     foreach(var item in values)
+//         root = InsertNode(root, item);
+//     return root;
+// }
+//     
+// static Node InsertNode(Node root, int value){
+//     if (root == null)
+//         return new Node(value);
+//             
+//     if (root.Value > value)
+//         root.Left = InsertNode(root.Left, value);
+//     else
+//         root.Right = InsertNode(root.Right, value);
+//             
+//     return root;
+// }
+//     
+// class Node{
+//     public int Value {get; set;}
+//     public Node Left {get; set;}
+//     public Node Right {get; set;}
+//         
+//     public Node(int value){
+//         this.Value = value;
+//     }
+// }
 
-var binaryTreeRoot = CreateBinaryTree(totalNodes, values);
-var height = getHeight(binaryTreeRoot);
+class Result
+{
 
-Console.Out.WriteLine(height);
+    private static Dictionary<char, char> MappedEnders = new() {
+        {'}', '{'},
+        {']', '['},
+        {')', '('},
+    };
+    /*
+     * Complete the 'isBalanced' function below.
+     *
+     * The function is expected to return a STRING.
+     * The function accepts STRING s as parameter.
+     */
 
-static int getHeight(Node root){
-    // Write your code here
-    if (root is null)
-        return 0;
+    public static string isBalanced(string s)
+    {
+        var half = (s.Length / 2);
         
-    var leftHeight = getHeight(root.Left);
-    var rightHeigh = getHeight(root.Right);
+        if (half % 2 == 0)
+            return "NO";
         
-    return 1 + Math.Max(leftHeight, rightHeigh);
-}
+        var firstHalf = s[..(s.Length / 2)];
+        var reversedSecondHalf = s[(s.Length / 2)..].Reverse().ToList();
     
-static Node CreateBinaryTree(int totalNodes, List<int> values){
-    Node root = null;
-    foreach(var item in values)
-        root = InsertNode(root, item);
-    return root;
-}
-    
-static Node InsertNode(Node root, int value){
-    if (root == null)
-        return new Node(value);
+        
+        for (int i = 0; i < half; i++){
+            if (!MappedEnders.ContainsKey(reversedSecondHalf[i])){
+                return "NO";
+            }
             
-    if (root.Value > value)
-        root.Left = InsertNode(root.Left, value);
-    else
-        root.Right = InsertNode(root.Right, value);
-            
-    return root;
-}
-    
-class Node{
-    public int Value {get; set;}
-    public Node Left {get; set;}
-    public Node Right {get; set;}
+            if (!firstHalf[i].Equals(MappedEnders[reversedSecondHalf[i]])){
+                return "NO";
+            }
+        }   
         
-    public Node(int value){
-        this.Value = value;
+        return "YES";    
+    }
+
+}
+
+class Solution
+{
+    public static void Main(string[] args)
+    {
+
+        int t = Convert.ToInt32(Console.ReadLine().Trim());
+
+        for (int tItr = 0; tItr < t; tItr++)
+        {
+            string s = Console.ReadLine();
+
+            string result = Result.isBalanced(s);
+            
+            Console.WriteLine(result);
+        }
     }
 }

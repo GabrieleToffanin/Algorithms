@@ -8,7 +8,7 @@ public class LevelOrderTraversalTests
     public void LevelOrderTraversal_ReturnsArrayOfArraysForEachLevel()
     {
         // Arrange
-        var tree = CreateTestTree();
+        var tree = CreateTestTree2();
         
         // Act
         var result = tree.GetLevelOrderTraversal();
@@ -40,6 +40,28 @@ public class LevelOrderTraversalTests
         root.Left.Left = new TreeNode(4);
         root.Left.Right = new TreeNode(5);
         root.Left.Right.Left = new TreeNode(6);
+        
+        var tree = new Tree();
+        tree.Root = root;
+        
+        return tree;
+    }
+    
+    private static Tree CreateTestTree2()
+    {
+        //         1
+        //        /\
+        //       2  3
+        //      /\ /\
+        //     4 5 null, null
+        //       \
+        //        6
+        TreeNode root = new TreeNode(1);
+        root.Right = new TreeNode(2);
+        root.Right.Right = new TreeNode(5);
+        root.Right.Right.Left = new TreeNode(3);
+        root.Right.Right.Left.Right = new TreeNode(4);
+        root.Right.Right.Right = new TreeNode(6);
         
         var tree = new Tree();
         tree.Root = root;
